@@ -15,8 +15,8 @@ while {[gets stdin line] >= 0} {
         set upper [expr {int($id / (1 << 24))}]
         set lower [expr {int($id - (1 << 24) * double($upper))}]
         set id [expr {(1 << 24) * ($upper & 0xff) + $lower}]
-		set asn [expr {$upper >> 8 & 0xffff}]
-		if {$asn} {set id $asn:$id}
+        set asn [expr {$upper >> 8 & 0xffff}]
+        if {$asn} {set id $asn:$id}
         regsub "$match" $line "PW neighbor: $ip, ID: $id" line
     }
     catch {puts $line}
