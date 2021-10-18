@@ -4,10 +4,10 @@ Considering these MAC secure logging messages:
 
 | Version | Message |
 | --- | --- |
-| cXR 6.0.2 | `LC/0/1/CPU0:Oct 10 10:20:07.476 CEST: l2fib[252]: %L2-L2FIB-5-SECURITY_MAC_SECURE_VIOLATION_PW : MAC secure in PW neighbor: 10.254.255.6, ID: 3801 detected violated packet that was previously learned in PW neighbor: 10.254.255.5, ID: 2973169635823321- source MAC: 00cc.fcc2.3e32, destination MAC: 0100.0ccc.cccd; action: none ` |
-| cXR 6.4.2 | `LC/0/0/CPU0:Oct 11 06:18:01.365 CEST: l2fib[252]: %L2-L2FIB-5-SECURITY_MAC_SECURE_VIOLATION_PW : MAC secure in PW neighbor: 10.254.255.5, ID: 128 detected violated packet that was previously learned in PW neighbor: 10.254.255.11, ID: 2973169635819648- source MAC: 0000.0c9f.f090, destination MAC: ffff.ffff.ffff; action: none ` |
-| cXR 6.7.3 | `LC/0/0/CPU0:Oct 13 08:33:45.957 CEST: l2fib[253]: %L2-L2FIB-5-SECURITY_MAC_SECURE_VIOLATION_PW : MAC secure in PW neighbor: 184483587, ID: 666 detected violated packet that was previously learned in PW neighbor: 184483585, ID: 2973169635820186- source MAC: 7001.b5f1.257c, destination MAC: ffff.ffff.ffff; action: none ` |
-| eXR 7.1.3 | `LC/0/1/CPU0:Oct 11 06:18:01.367 CEST: l2fib[213]: %L2-L2FIB-5-SECURITY_MAC_SECURE_VIOLATION_PW : MAC secure in PW neighbor: 100662794, ID: 2973169635819648 detected violated packet that was previously learned in PW neighbor: 201326090, ID: 2973169635819648- source MAC: 0000.0c9f.f090, destination MAC: ffff.ffff.ffff; action: none ` |
+| cXR 6.0.2 | LC/0/1/CPU0:Oct 10 10:20:07.476 CEST: l2fib[252]: %L2-L2FIB-5-SECURITY_MAC_SECURE_VIOLATION_PW : MAC secure in PW neighbor: 10.254.255.6, ID: 3801 detected violated packet that was previously learned in PW neighbor: 10.254.255.5, ID: **2973169635823321**- source MAC: 00cc.fcc2.3e32, destination MAC: 0100.0ccc.cccd; action: none |
+| cXR 6.4.2 | LC/0/0/CPU0:Oct 11 06:18:01.365 CEST: l2fib[252]: %L2-L2FIB-5-SECURITY_MAC_SECURE_VIOLATION_PW : MAC secure in PW neighbor: 10.254.255.5, ID: 128 detected violated packet that was previously learned in PW neighbor: 10.254.255.11, ID: **2973169635819648**- source MAC: 0000.0c9f.f090, destination MAC: ffff.ffff.ffff; action: none |
+| cXR 6.7.3 | LC/0/0/CPU0:Oct 13 08:33:45.957 CEST: l2fib[253]: %L2-L2FIB-5-SECURITY_MAC_SECURE_VIOLATION_PW : MAC secure in PW neighbor: **184483587**, ID: 666 detected violated packet that was previously learned in PW neighbor: **184483585**, ID: **2973169635820186**- source MAC: 7001.b5f1.257c, destination MAC: ffff.ffff.ffff; action: none |
+| eXR 7.1.3 | LC/0/1/CPU0:Oct 11 06:18:01.367 CEST: l2fib[213]: %L2-L2FIB-5-SECURITY_MAC_SECURE_VIOLATION_PW : MAC secure in PW neighbor: **100662794**, ID: **2973169635819648** detected violated packet that was previously learned in PW neighbor: **201326090**, ID: **2973169635819648**- source MAC: 0000.0c9f.f090, destination MAC: ffff.ffff.ffff; action: none |
 
 Two issues can be identified:
 * The PW ID is not formatted as ASN:VPN-ID when VPLS with BGP Autodiscovery is used
@@ -36,7 +36,7 @@ The absolute path needs to be specified to use the script:
 
 The script deciphered the cXR 6.7.3 log message shown above:
 
-`LC/0/0/CPU0:Oct 13 08:33:45.957 CEST: l2fib[253]: %L2-L2FIB-5-SECURITY_MAC_SECURE_VIOLATION_PW : MAC secure in PW neighbor: 10.254.255.3, ID: 666 detected violated packet that was previously learned in PW neighbor: 10.254.255.1, ID: 36885:666- source MAC: 7001.b5f1.257c, destination MAC: ffff.ffff.ffff; action: none `
+LC/0/0/CPU0:Oct 13 08:33:45.957 CEST: l2fib[253]: %L2-L2FIB-5-SECURITY_MAC_SECURE_VIOLATION_PW : MAC secure in PW neighbor: **10.254.255.3**, ID: 666 detected violated packet that was previously learned in PW neighbor: **10.254.255.1**, ID: **36885:666**- source MAC: 7001.b5f1.257c, destination MAC: ffff.ffff.ffff; action: none
 
 ## 64-bit XR
 
@@ -57,4 +57,4 @@ Use the fix as follows:
 
 The script deciphered the eXR 7.1.3 log message shown above:
 
-`LC/0/1/CPU0:Oct 11 06:18:01.367 CEST: l2fib[213]: %L2-L2FIB-5-SECURITY_MAC_SECURE_VIOLATION_PW : MAC secure in PW neighbor: 10.254.255.5, ID: 36885:128 detected violated packet that was previously learned in PW neighbor: 10.254.255.11, ID: 36885:128- source MAC: 0000.0c9f.f090, destination MAC: ffff.ffff.ffff; action: none `
+LC/0/1/CPU0:Oct 11 06:18:01.367 CEST: l2fib[213]: %L2-L2FIB-5-SECURITY_MAC_SECURE_VIOLATION_PW : MAC secure in PW neighbor: **10.254.255.5**, ID: **36885:128** detected violated packet that was previously learned in PW neighbor: **10.254.255.11**, ID: **36885:128**- source MAC: 0000.0c9f.f090, destination MAC: ffff.ffff.ffff; action: none
