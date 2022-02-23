@@ -8,6 +8,7 @@ Considering these MAC secure logging messages:
 | cXR 6.4.2 | LC/0/0/CPU0:Oct 11 06:18:01.365 CEST: l2fib[252]: %L2-L2FIB-5-SECURITY_MAC_SECURE_VIOLATION_PW : MAC secure in PW neighbor: 10.254.255.5, ID: 128 detected violated packet that was previously learned in PW neighbor: 10.254.255.11, ID: **2973169635819648**- source MAC: 0000.0c9f.f090, destination MAC: ffff.ffff.ffff; action: none |
 | cXR 6.7.3 | LC/0/0/CPU0:Oct 13 08:33:45.957 CEST: l2fib[253]: %L2-L2FIB-5-SECURITY_MAC_SECURE_VIOLATION_PW : MAC secure in PW neighbor: **184483587**, ID: 666 detected violated packet that was previously learned in PW neighbor: **184483585**, ID: **2973169635820186**- source MAC: 7001.b5f1.257c, destination MAC: ffff.ffff.ffff; action: none |
 | eXR 7.1.3 | LC/0/1/CPU0:Oct 11 06:18:01.367 CEST: l2fib[213]: %L2-L2FIB-5-SECURITY_MAC_SECURE_VIOLATION_PW : MAC secure in PW neighbor: **100662794**, ID: **2973169635819648** detected violated packet that was previously learned in PW neighbor: **201326090**, ID: **2973169635819648**- source MAC: 0000.0c9f.f090, destination MAC: ffff.ffff.ffff; action: none |
+| eXR 7.4.2 | LC/0/1/CPU0:Feb 22 15:32:35.995 CET: l2fib[169]: %L2-L2FIB-5-SECURITY_MAC_SECURE_VIOLATION_PW : MAC secure in PW neighbor: 10.254.255.3, ID: **2973169635819585** detected violated packet that was previously learned in PW neighbor: 10.254.255.1, ID: **2973169635819585**- source MAC: 0000.0c9f.f041, destination MAC: ffff.ffff.ffff; action: none |
 
 Two issues can be identified:
 * The PW ID is not formatted as ASN:VPN-ID when VPLS with BGP Autodiscovery is used
@@ -15,7 +16,7 @@ Two issues can be identified:
 
 BGP Autodiscovery uses a VPLS ID, which by default equals to ASN:VPN ID. The VPN ID is 4 bytes in size, and if a 4 byte ASN is used, the lower two bytes of the ASN are used to build the VPLS ID.
 
-This fix uses the CLI capability to utilize a script for post processing.
+This fix uses the CLI capability to utilize a script for post processing. Cisco will integrate the official fix into branches 7.5.2, 7.6.1 and 7.7.1.
 
 ## Classic XR
 
